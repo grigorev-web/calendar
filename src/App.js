@@ -28,7 +28,7 @@ function App() {
     fetch("https://dm2grig.mart-shop.ru/test/calendar/api.php?" + searchParams)
       .then((response) => response.json())
       .then((data) => console.log("fetch data: ", data));
-  }, [state]);
+  }, []);
 
   const eDay = {
     highlighted: [new Date(2021, 5, 26), new Date(2021, 5, 24)],

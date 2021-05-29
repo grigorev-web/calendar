@@ -2,6 +2,9 @@
   font-family: sans-serif;
   text-align: center;
 }
-.App .DayPicker-Day {
-  border-radius: unset !important;
+.DayPicker-Day {
+  border-radius: unset;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: #ffb95d;
 }
