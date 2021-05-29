@@ -99,7 +99,7 @@ function App() {
   const selectedDays = [range.from, { from: range.from, to: range.to }]; //o: enteredTo }];
   return (
     <div>
-      <h1>Calender</h1>
+      <h1>Calender 0.2</h1>
       <DayPicker
         className="Range"
         numberOfMonths={2}
