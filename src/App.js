@@ -4,6 +4,10 @@ import "react-day-picker/lib/style.css";
 import "./styles.css";
 import { WEEKDAYS_SHORT, MONTHS, EVENTS } from "./types";
 
+const eDay = {
+  highlighted: [new Date(2021, 5, 18), new Date(2021, 5, 23)]
+};
+
 function App() {
   const [state, setState] = React.useState(getInitialState());
 
@@ -19,10 +23,12 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log("fetch data: ", data);
-        let events = [];
+        let events = { highlighted: [] };
         for (let key in data) {
-          events.push(data[key]);
+          events.highlighted.push(new Date(data[key].date));
         }
+        console.log("events", events);
+        console.log("eDay", eDay);
         setState((prevState) => ({
           ...prevState,
           events: events
@@ -30,9 +36,6 @@ function App() {
       });
   }
 
-  const eDay = {
-    highlighted: []
-  };
   useEffect(() => {
     //console.log("did mount", state);
     getPosts();
@@ -42,7 +45,7 @@ function App() {
     return {
       range: { from: null, to: null },
       enteredTo: null,
-      events: EVENTS
+      events: { highlighted: [] }
     };
   }
   function isSelectingFirstDay(from, to, day) {
@@ -101,6 +104,11 @@ function App() {
   //const modifiers = { start: range.from, end: enteredTo };
   const disabledDays = { before: state.range.from };
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
+  const modifiers = {
+    disabled: [new Date(2021, 5, 17)],
+    birthday: new Date(2021, 5, 19),
+    monday: { daysOfWeek: [1] }
+  };
   return (
     <div>
       <h3>Calendar 0.3</h3>
@@ -110,7 +118,7 @@ function App() {
         fromMonth={range.from}
         selectedDays={selectedDays}
         disabledDays={disabledDays}
-        modifiers={({ start: range.from, end: enteredTo }, eDay)}
+        modifiers={({ start: range.from, end: enteredTo }, state.events)}
         onDayClick={handleDayClick}
         onDayMouseEnter={handleDayMouseEnter}
         months={MONTHS}

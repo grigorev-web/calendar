@@ -8,3 +8,8 @@
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   background-color: #ffb95d;
 }
+.DayPicker-Day--highlighted {
+  text-decoration: underline;
+  font-weight: bold;
+  background: palegreen;
+}
