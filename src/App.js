@@ -7,33 +7,36 @@ import { WEEKDAYS_SHORT, MONTHS, EVENTS } from "./types";
 function App() {
   const [state, setState] = React.useState(getInitialState());
 
-  /*
   function getPosts() {
-    console.log('getPosts');
     var searchParams = new URLSearchParams();
     searchParams.append("from", state.range.from);
     searchParams.append("to", state.range.to);
-
-    fetch("http://dm2grig.mart-shop.ru/test/calendar/api.php?" + searchParams)
+    console.log(searchParams);
+    fetch(
+      "https://russoft.org/wp-content/plugins/react-calendar/api.php?action=get_events&" +
+        searchParams
+    )
       .then((response) => response.json())
-      .then((data) => console.log("fetch data: ", data));
+      .then((data) => {
+        console.log("fetch data: ", data);
+        let events = [];
+        for (let key in data) {
+          events.push(data[key]);
+        }
+        setState((prevState) => ({
+          ...prevState,
+          events: events
+        }));
+      });
   }
-*/
-  useEffect(() => {
-    //console.log("did mount", state);
-    var searchParams = new URLSearchParams();
-    searchParams.append("from", state.range.from);
-    searchParams.append("to", state.range.to);
-
-    fetch("https://dm2grig.mart-shop.ru/test/calendar/api.php?" + searchParams)
-      .then((response) => response.json())
-      .then((data) => console.log("fetch data: ", data));
-  }, []);
 
   const eDay = {
-    highlighted: [new Date(2021, 5, 26), new Date(2021, 5, 24)],
-    highlighted2: [new Date(2021, 5, 21), new Date(2021, 5, 23)]
+    highlighted: []
   };
+  useEffect(() => {
+    //console.log("did mount", state);
+    getPosts();
+  }, []);
 
   function getInitialState() {
     return {
@@ -76,6 +79,7 @@ function App() {
         },
         enteredTo: day
       }));
+      getPosts();
     }
   }
 
@@ -96,7 +100,7 @@ function App() {
   const { range, enteredTo } = state;
   //const modifiers = { start: range.from, end: enteredTo };
   const disabledDays = { before: state.range.from };
-  const selectedDays = [range.from, { from: range.from, to: range.to }]; //o: enteredTo }];
+  const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
   return (
     <div>
       <h3>Calendar 0.3</h3>
