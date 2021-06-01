@@ -2,11 +2,7 @@ import DayPicker, { DateUtils } from "react-day-picker";
 import React, { useEffect } from "react";
 import "react-day-picker/lib/style.css";
 import "./styles.css";
-import { WEEKDAYS_SHORT, MONTHS, EVENTS } from "./types";
-
-const eDay = {
-  highlighted: [new Date(2021, 5, 18), new Date(2021, 5, 23)]
-};
+import { WEEKDAYS_SHORT, MONTHS } from "./types";
 
 function App() {
   const [state, setState] = React.useState(getInitialState());
@@ -27,8 +23,7 @@ function App() {
         for (let key in data) {
           events.highlighted.push(new Date(data[key].date));
         }
-        console.log("events", events);
-        console.log("eDay", eDay);
+
         setState((prevState) => ({
           ...prevState,
           events: events
@@ -104,11 +99,7 @@ function App() {
   //const modifiers = { start: range.from, end: enteredTo };
   const disabledDays = { before: state.range.from };
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
-  const modifiers = {
-    disabled: [new Date(2021, 5, 17)],
-    birthday: new Date(2021, 5, 19),
-    monday: { daysOfWeek: [1] }
-  };
+
   return (
     <div>
       <h3>Calendar 0.3</h3>
