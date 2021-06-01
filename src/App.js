@@ -138,9 +138,9 @@ function App() {
       </p>
       <p>Список мероприятий</p>
       <ul>
-        {state.events.highlighted.map((ev, key) => (
-          <li key={key}>{ev.toLocaleString("ru")}</li>
-        ))}
+        {state.events.highlighted.map((ev, key) => {
+          return <li key={key}>{ev.toLocaleString("ru")}</li>;
+        })}
       </ul>
     </div>
   );
