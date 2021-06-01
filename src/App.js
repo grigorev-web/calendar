@@ -136,6 +136,7 @@ function App() {
         enteredTo:{" "}
         {state.enteredTo == null ? "null" : state.enteredTo.toString()}
       </p>
+      <p>Список мероприятий</p>
       <ul>
         {state.events.highlighted.map((ev, key) => (
           <li key={key}>{ev.toLocaleString("ru")}</li>
