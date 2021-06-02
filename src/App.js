@@ -77,7 +77,6 @@ function App() {
         },
         enteredTo: day
       }));
-      getPosts();
     }
   }
 
@@ -92,7 +91,10 @@ function App() {
   }
 
   function handleResetClick() {
-    setState(getInitialState());
+    setState((prevState) => ({
+      ...prevState,
+      range: { from: null, to: null }
+    }));
   }
 
   const { range, enteredTo } = state;
@@ -139,7 +141,11 @@ function App() {
       <p>Список мероприятий</p>
       <ul>
         {state.events.highlighted.map((ev, key) => {
-          return <li key={key}>{ev.toLocaleString("ru")}</li>;
+          if (
+            (ev > state.range.from && ev < state.range.to) ||
+            state.range.from == null
+          )
+            return <li key={key}>{ev.toLocaleString("ru")}</li>;
         })}
       </ul>
     </div>
