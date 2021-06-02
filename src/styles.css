@@ -9,9 +9,11 @@
   background-color: #ffb95d;
 }
 .DayPicker-Day--highlighted:not(.DayPicker-Day--outside) {
-  text-decoration: underline;
+  color: black;
   font-weight: bold;
-  background: #ffb95d !important;
+  background: #ffe7c9 !important;
+
+  border-radius: 26%;
 }
 .Range
   .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {

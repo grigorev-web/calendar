@@ -102,11 +102,13 @@ function App() {
   const disabledDays = { before: state.range.from };
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
   const modifiers = {
-    weekends: { daysOfWeek: [6, 0] } // saturday, sunday
+    weekends: { daysOfWeek: [6, 0] }, // saturday, sunday
+    selected: { start: range.from, end: enteredTo },
+    highlighted: state.events.highlighted
   };
   return (
     <div>
-      <h3>Calendar 0.3</h3>
+      <h3>Calendar 0.4</h3>
       <DayPicker
         className="Range"
         numberOfMonths={2}
@@ -114,9 +116,7 @@ function App() {
         fromMonth={range.from}
         selectedDays={selectedDays}
         disabledDays={disabledDays}
-        modifiers={
-          ({ start: range.from, end: enteredTo }, state.events, modifiers)
-        }
+        modifiers={modifiers}
         onDayClick={handleDayClick}
         onDayMouseEnter={handleDayMouseEnter}
         months={MONTHS}
