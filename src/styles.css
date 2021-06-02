@@ -22,3 +22,6 @@
 .DayPicker-Day--start {
   background: red !important;
 }
+.DayPicker-Day--weekends {
+  color: #ff9494;
+}
