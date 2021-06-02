@@ -103,7 +103,8 @@ function App() {
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
   const modifiers = {
     weekends: { daysOfWeek: [6, 0] }, // saturday, sunday
-    selected: { start: range.from, end: enteredTo },
+    start: range.from,
+    end: enteredTo,
     highlighted: state.events.highlighted
   };
   return (

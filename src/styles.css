@@ -5,9 +5,7 @@
 .DayPicker-Day {
   border-radius: unset;
 }
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-  background-color: #ffb95d;
-}
+
 .DayPicker-Day--highlighted:not(.DayPicker-Day--outside) {
   color: black;
   font-weight: bold;
@@ -22,7 +20,13 @@
 }
 
 .DayPicker-Day--start {
-  background: red !important;
+  background: #88bfff;
+  border-radius: 25px 0 0 25px;
+}
+
+.DayPicker-Day--end {
+  background: #88bfff;
+  border-radius: 0 25px 25px 0;
 }
 .DayPicker-Day--weekends {
   color: #ff9494;
