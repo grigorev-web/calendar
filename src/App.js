@@ -104,7 +104,7 @@ function App() {
   const modifiers = {
     weekends: { daysOfWeek: [6, 0] }, // saturday, sunday
     start: range.from,
-    end: enteredTo,
+    end: range.to,
     highlighted: state.events.highlighted
   };
   return (
