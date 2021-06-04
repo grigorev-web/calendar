@@ -20,15 +20,11 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log("fetch data: ", data);
-        let events = { highlighted: [] };
-        for (let key in data) {
-          events.highlighted.push(new Date(data[key].date));
-          // ey
-        }
+   
 
         setState((prevState) => ({
           ...prevState,
-          events: events
+          events: data
         }));
       });
   }
@@ -157,13 +153,14 @@ function App() {
       </p>
       <p>Список мероприятий</p>
       <ul>
-        {state.events.highlighted.map((ev, key) => {
+        {Object.entries(state.events).map(([k,v], key)=>{ 
+          let ev = new Date(v.date);
           if (
-            (ev > state.range.from && ev < state.range.to) ||
+            ( ev > state.range.from && ev < state.range.to) ||
             state.range.from == null
           )
-            return <EventDiv key={key} ev={ev} />;
-        })}
+            return <EventDiv key={key} ev={ev} event={v}/>;
+          })} 
       </ul>
     </div>
   );
