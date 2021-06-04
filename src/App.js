@@ -19,10 +19,11 @@ function App() {
     )
       .then((response) => response.json())
       .then((data) => {
-        //console.log("fetch data: ", data);
+        console.log("fetch data: ", data);
         let events = { highlighted: [] };
         for (let key in data) {
           events.highlighted.push(new Date(data[key].date));
+          // ey
         }
 
         setState((prevState) => ({
@@ -104,6 +105,7 @@ function App() {
       ...prevState,
       range: { from: null, to: null }
     }));
+    console.log(state);
   }
 
   const { range, enteredTo } = state;
