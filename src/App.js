@@ -11,14 +11,14 @@ function App() {
     var searchParams = new URLSearchParams();
     searchParams.append("from", state.range.from);
     searchParams.append("to", state.range.to);
-    console.log(searchParams);
+    //console.log(searchParams);
     fetch(
       "https://russoft.org/wp-content/plugins/react-calendar/api.php?action=get_events&" +
         searchParams
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("fetch data: ", data);
+        //console.log("fetch data: ", data);
         let events = { highlighted: [] };
         for (let key in data) {
           events.highlighted.push(new Date(data[key].date));
@@ -46,13 +46,17 @@ function App() {
   function isSelectingFirstDay(from, to, day) {
     const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
     const isRangeSelected = from && to;
-    console.log("isBeforeFirstDay:", isBeforeFirstDay);
-    console.log("from:", from);
+    //console.log("isBeforeFirstDay:", isBeforeFirstDay);
+    //console.log("from:", from);
     return !from || isBeforeFirstDay || isRangeSelected;
   }
 
   function handleDayClick(day) {
     const { from, to } = state.range;
+    if (from < to) {
+      handleResetClick();
+      return;
+    }
     if (from && to && day >= from && day <= to) {
       handleResetClick();
       return;
@@ -68,7 +72,7 @@ function App() {
         enteredTo: day
       }));
     } else {
-      console.log("second click"); // second click
+      //console.log("second click"); // second click
       setState((prevState) => ({
         ...prevState,
         range: {
