@@ -108,11 +108,17 @@ function App() {
   //const modifiers = { start: range.from, end: enteredTo };
   const disabledDays = { before: state.range.from };
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
+
+  let highlighted = Object.entries(state.events).map(([k,v], key)=>{ 
+            return new Date(v.date)
+          })
+
+
   const modifiers = {
     weekends: { daysOfWeek: [6, 0] }, // saturday, sunday
     start: range.from,
     end: range.to,
-    highlighted: state.events.highlighted
+    highlighted: highlighted
   };
   return (
     <div>
