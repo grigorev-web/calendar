@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import "react-day-picker/lib/style.css";
 import "./styles.css";
 import { WEEKDAYS_SHORT, MONTHS } from "./types";
+import EventDiv from "./components/EventDiv";
 
 function App() {
   const [state, setState] = React.useState(getInitialState());
@@ -159,7 +160,7 @@ function App() {
             (ev > state.range.from && ev < state.range.to) ||
             state.range.from == null
           )
-            return <li key={key}>{ev.toLocaleString("ru")}</li>;
+            return <EventDiv key={key} ev={ev} />;
         })}
       </ul>
     </div>
