@@ -63,11 +63,15 @@ function App() {
     }
     if (isSelectingFirstDay(from, to, day)) {
       // first click
+      //console.log(day);
+      //day = new Date(day.setHours(0));
+      //console.log(day);
+      //return;
       setState((prevState) => ({
         ...prevState,
         range: {
           ...prevState.range,
-          from: day
+          from: new Date(day.setHours(0))
         },
         enteredTo: day
       }));
@@ -77,7 +81,7 @@ function App() {
         ...prevState,
         range: {
           ...prevState.range,
-          to: day
+          to: new Date(day.setHours(23, 59, 59))
         },
         enteredTo: day
       }));
