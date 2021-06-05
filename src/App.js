@@ -20,7 +20,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log("fetch data: ", data);
-   
 
         setState((prevState) => ({
           ...prevState,
@@ -109,10 +108,9 @@ function App() {
   const disabledDays = { before: state.range.from };
   const selectedDays = [range.from, { from: range.from, to: enteredTo }]; //o: enteredTo }];
 
-  let highlighted = Object.entries(state.events).map(([k,v], key)=>{ 
-            return new Date(v.date)
-          })
-
+  let highlighted = Object.entries(state.events).map(([k, v], key) => {
+    return new Date(v.date);
+  });
 
   const modifiers = {
     weekends: { daysOfWeek: [6, 0] }, // saturday, sunday
@@ -159,14 +157,14 @@ function App() {
       </p>
       <p>Список мероприятий</p>
       <ul>
-        {Object.entries(state.events).map(([k,v], key)=>{ 
+        {Object.entries(state.events).map(([k, v], key) => {
           let ev = new Date(v.date);
           if (
-            ( ev > state.range.from && ev < state.range.to) ||
+            (ev > state.range.from && ev < state.range.to) ||
             state.range.from == null
           )
-            return <EventDiv key={key} ev={ev} event={v}/>;
-          })} 
+            return <EventDiv key={key} event={v} />;
+        })}
       </ul>
     </div>
   );
